@@ -1,0 +1,48 @@
+name: Create ITSM-NG Ticket
+on:
+  workflow_call:
+    inputs:
+      titre:
+        required: true
+        type: string
+      contenu:
+        required: true
+        type: string
+      priority:
+        required: false
+        type: number
+        default: 3
+      entite_id:
+        required: false
+        type: number
+        default: 1
+      group_id:
+        required: true
+        type: number
+      api_url:
+        required: true
+        type: string
+    secrets:
+      GLPI_APP_TOKEN:
+        required: true
+      GLPI_USER_TOKEN:
+        required: true
+
+jobs:
+  create-ticket:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create ITSM-NG Ticket
+        run: |
+          curl -sL https://raw.githubusercontent.com/itsmng/itsm-ng_create_ticket_action/refs/heads/master/create_ticket.sh -o create_ticket.sh
+          chmod +x create_ticket.sh
+          ./create_ticket.sh
+        env:
+          APP_TOKEN: ${{ secrets.GLPI_APP_TOKEN }}
+          USER_TOKEN: ${{ secrets.GLPI_USER_TOKEN }}
+          TITRE: ${{ inputs.titre }}
+          CONTENU: ${{ inputs.contenu }}
+          PRIORITY: ${{ inputs.priority }}
+          ENTITE_ID: ${{ inputs.entite_id }}
+          GROUP_ID: ${{ inputs.group_id }}
+          API_URL: ${{ inputs.api_url }}
