@@ -1,0 +1,47 @@
+name: Create ITSM-NG Ticket
+description: "Crée un ticket ITSM-NG via create_ticket.sh"
+author: "TonNom"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Run create_ticket.sh
+      shell: bash
+      run: ./action-create-ticket/create_ticket.sh
+      env:
+        APP_TOKEN: ${{ secrets.APP_TOKEN }}
+        USER_TOKEN: ${{ secrets.USER_TOKEN }}
+        TITRE: ${{ inputs.titre }}
+        CONTENU: ${{ inputs.contenu }}
+        PRIORITY: ${{ inputs.priority }}
+        ENTITE_ID: ${{ inputs.entite_id }}
+        GROUP_ID: ${{ inputs.group_id }}
+        API_URL: ${{ inputs.api_url }}
+
+inputs:
+  titre:
+    description: "Titre du ticket"
+    required: true
+  contenu:
+    description: "Contenu du ticket"
+    required: true
+  priority:
+    description: "Priorité du ticket"
+    required: false
+    default: 3
+  entite_id:
+    description: "ID de l'entité"
+    required: false
+    default: 1
+  group_id:
+    description: "ID du groupe"
+    required: true
+  api_url:
+    description: "URL de l'API ITSM"
+    required: true
+
+secrets:
+  APP_TOKEN:
+    description: "Token d'application ITSM"
+  USER_TOKEN:
+    description: "Token utilisateur ITSM"
