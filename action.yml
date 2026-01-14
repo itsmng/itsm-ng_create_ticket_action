@@ -39,9 +39,3 @@ inputs:
   api_url:
     description: "URL de l'API ITSM"
     required: true
-
-secrets:
-  APP_TOKEN:
-    description: "Token d'application ITSM"
-  USER_TOKEN:
-    description: "Token utilisateur ITSM"
