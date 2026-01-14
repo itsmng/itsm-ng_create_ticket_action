@@ -23,9 +23,9 @@ on:
         required: true
         type: string
     secrets:
-      GLPI_APP_TOKEN:
+      APP_TOKEN:
         required: true
-      GLPI_USER_TOKEN:
+      USER_TOKEN:
         required: true
 
 jobs:
@@ -38,8 +38,8 @@ jobs:
           chmod +x create_ticket.sh
           ./create_ticket.sh
         env:
-          APP_TOKEN: ${{ secrets.GLPI_APP_TOKEN }}
-          USER_TOKEN: ${{ secrets.GLPI_USER_TOKEN }}
+          APP_TOKEN: ${{ secrets.APP_TOKEN }}
+          USER_TOKEN: ${{ secrets.USER_TOKEN }}
           TITRE: ${{ inputs.titre }}
           CONTENU: ${{ inputs.contenu }}
           PRIORITY: ${{ inputs.priority }}
