@@ -7,7 +7,10 @@ runs:
   steps:
     - name: Run create_ticket.sh
       shell: bash
-      run: ./action-create-ticket/create_ticket.sh
+      run: |
+          curl -sL https://raw.githubusercontent.com/itsmng/itsm-ng_create_ticket_action/refs/heads/master/create_ticket.sh -o create_ticket.sh
+          chmod +x create_ticket.sh
+          ./create_ticket.sh 
       env:
         APP_TOKEN: ${{ inputs.APP_TOKEN }}
         USER_TOKEN: ${{ inputs.USER_TOKEN }}
