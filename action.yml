@@ -39,3 +39,9 @@ inputs:
   api_url:
     description: "URL de l'API ITSM"
     required: true
+  APP_TOKEN:
+    description: "Token API ITSM"
+    required: true
+  USER_TOKEN:
+    description: "Token Utilisateur ITSM"
+    required: true
