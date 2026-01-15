@@ -9,8 +9,8 @@ runs:
       shell: bash
       run: ./action-create-ticket/create_ticket.sh
       env:
-        APP_TOKEN: ${{ secrets.APP_TOKEN }}
-        USER_TOKEN: ${{ secrets.USER_TOKEN }}
+        APP_TOKEN: ${{ inputs.APP_TOKEN }}
+        USER_TOKEN: ${{ inputs.USER_TOKEN }}
         TITRE: ${{ inputs.titre }}
         CONTENU: ${{ inputs.contenu }}
         PRIORITY: ${{ inputs.priority }}
